@@ -14,6 +14,12 @@ import java.util.stream.Collectors;
 
 
 @UtilityClass
+/**
+* @ClassName StreamUtil
+* @Author kongming
+* @Date 2020/11/8 5:21 下午
+* @Description java8流对象工具栏
+*/
 public class StreamUtil {
 
     public static <T, R> List<R> list(List<T> sourceList, Function<T, R> mapperFunction) {

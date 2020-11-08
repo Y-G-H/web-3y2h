@@ -5,6 +5,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Data
+/**
+* @ClassName SqlException
+* @Author kongming
+* @Date 2020/11/8 5:22 下午
+* @Description sql执行异常
+*/
 public class SqlException extends RuntimeException {
 
 

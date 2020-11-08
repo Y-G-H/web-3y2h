@@ -19,6 +19,12 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Order(1)
 @Component
+/**
+* @ClassName WebResponseHandlerAspect
+* @Author kongming
+* @Date 2020/11/8 5:18 下午
+* @Description 统一异常处理aop
+*/
 public class WebResponseHandlerAspect {
 
     public static final String SEPARATE_SHARP = "#";

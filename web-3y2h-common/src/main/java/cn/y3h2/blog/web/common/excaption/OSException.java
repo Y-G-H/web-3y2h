@@ -5,6 +5,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Data
+/**
+* @ClassName OSException
+* @Author kongming
+* @Date 2020/11/8 5:22 下午
+* @Description 系统异常
+*/
 public class OSException extends RuntimeException {
 
   @Getter

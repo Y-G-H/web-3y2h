@@ -3,6 +3,12 @@ package cn.y3h2.blog.web.common;
 import cn.y3h2.blog.web.common.enums.MessageEnums;
 import lombok.Data;
 
+/**
+* @ClassName WebResponse
+* @Author kongming
+* @Date 2020/11/8 5:18 下午
+* @Description 统一接口返回结构
+*/
 @Data
 public class WebResponse<T> {
     /**

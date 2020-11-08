@@ -16,6 +16,12 @@ import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
+/**
+* @ClassName DateUtil
+* @Author kongming
+* @Date 2020/11/8 5:20 下午
+* @Description 日期时间工具类
+*/
 public class DateUtil {
     private DateUtil() {
     }

@@ -12,6 +12,12 @@ import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
+/**
+* @ClassName TestServiceRpc
+* @Author kongming
+* @Date 2020/11/8 5:20 下午
+* @Description 这里需要描述这个RPC的主要作用
+*/
 public class TestServiceRpc {
 
     @Autowired

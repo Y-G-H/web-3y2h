@@ -5,6 +5,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Data
+/**
+* @ClassName ConflictException
+* @Author kongming
+* @Date 2020/11/8 5:22 下午
+* @Description 冲突异常
+*/
 public class ConflictException extends RuntimeException {
 
   @Getter

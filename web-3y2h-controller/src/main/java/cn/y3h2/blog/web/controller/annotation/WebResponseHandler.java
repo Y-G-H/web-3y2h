@@ -7,6 +7,12 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
+/**
+* @ClassName WebResponseHandler
+* @Author kongming
+* @Date 2020/11/8 5:19 下午
+* @Description 统一异常处理注解
+*/
 public @interface WebResponseHandler {
     String error() default "";
 

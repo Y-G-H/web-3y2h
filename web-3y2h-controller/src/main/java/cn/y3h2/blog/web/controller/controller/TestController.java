@@ -9,6 +9,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+/**
+* @ClassName TestController
+* @Author kongming
+* @Date 2020/11/8 5:16 下午
+* @Description 这里需要描述这个类的核心业务
+*/
 @Slf4j
 @RestController
 @RequestMapping("/api/y3h2/test")

@@ -3,6 +3,12 @@ package cn.y3h2.blog.web.common.excaption;
 import lombok.Data;
 
 @Data
+/**
+* @ClassName RpcException
+* @Author kongming
+* @Date 2020/11/8 5:22 下午
+* @Description dubbo调用异常
+*/
 public class RpcException extends RuntimeException {
     private String code;
     private String msg;
