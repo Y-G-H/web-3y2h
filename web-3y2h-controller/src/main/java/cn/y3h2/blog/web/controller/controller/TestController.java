@@ -17,6 +17,11 @@ public class TestController {
     @Autowired
     private TestBiz testBiz;
 
+    /**
+     * 这里需要有注释，解释这个接口的作用
+     * @param param
+     * @return
+     */
     @PostMapping("/str")
     @WebResponseHandler
     public WebResponse<TestVO> test(@RequestBody TestParam param) {
