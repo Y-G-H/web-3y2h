@@ -8,6 +8,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication(scanBasePackages = {
         "cn.y3h2.blog.web.intergration",
+        "cn.y3h2.blog.web.biz",
         "cn.y3h2.blog.web.controller"
 })
 @Configuration

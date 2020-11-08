@@ -1,12 +1,13 @@
 package cn.y3h2.blog.web.controller.controller;
 
-import cn.y3h2.blog.user.api.Test2Facade;
-import cn.y3h2.blog.user.api.TestFacade;
+import cn.y3h2.blog.web.common.WebResponse;
+import cn.y3h2.blog.web.common.dto.common.req.TestParam;
+import cn.y3h2.blog.web.controller.annotation.WebResponseHandler;
+import cn.y3h2.blog.web.controller.biz.TestBiz;
+import cn.y3h2.blog.web.controller.vo.TestVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
@@ -14,19 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
 
     @Autowired
-    TestFacade testFacade;
+    private TestBiz testBiz;
 
-    @Autowired
-    Test2Facade test2Facade;
-
-    @GetMapping
-    public String test() {
-        return testFacade.test("hahahaha, 牛逼");
-    }
-
-    @GetMapping("/text")
-    public String text() {
-        return test2Facade.test("傻逼东西");
+    @PostMapping("/str")
+    @WebResponseHandler
+    public WebResponse<TestVO> test(@RequestBody TestParam param) {
+        return WebResponse.ok(testBiz.test(param));
     }
 
 }
