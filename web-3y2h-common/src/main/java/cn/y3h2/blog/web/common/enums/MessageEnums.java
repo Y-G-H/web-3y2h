@@ -19,6 +19,7 @@ public enum MessageEnums {
   SERVICE_RETURN_ERROR("9992","服务数据异常！"),
   SYS_ERROR("9999", "系统异常！"),
   SCHEDULE_JOB_ERROR("9992", "创建定时任务异常"),
+  LOGIN_ERROR("100", "用户登录异常！"),
   NO_PRIVILEGE("101","无权限"),
   UN_LOGGED("102", "用户未登录！"),
   EXCEL_READ_ERROR("9994", "excel数据校验异常"),

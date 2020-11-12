@@ -9,12 +9,11 @@ import lombok.Data;
 * @Description 这里需要描述该实体的含义
 */
 @Data
-public class TestParam {
+public class FindUserParam {
 
     /**
-     * 这里要有注释，解释这个字段的含义和作用
-     * 需要说明是否必填
+     * 用户名
      */
-    private String str;
+    private String username;
 
 }

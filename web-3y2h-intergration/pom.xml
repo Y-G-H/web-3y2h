@@ -22,6 +22,12 @@
             <groupId>cn.y3h2.blog.user</groupId>
             <artifactId>api</artifactId>
             <version>${user.center.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.baomidou</groupId>
+                    <artifactId>mybatis-plus-boot-starter</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 
