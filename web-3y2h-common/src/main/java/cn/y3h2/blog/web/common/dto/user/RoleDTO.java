@@ -13,8 +13,19 @@ import java.util.List;
 @Data
 public class RoleDTO {
 
+    /**
+     * 角色编码
+     */
+    private String code;
+
+    /**
+     * 角色名称
+     */
     private String name;
 
+    /**
+     * 权限列表
+     */
     private List<PermissionsDTO> permissions;
 
 }

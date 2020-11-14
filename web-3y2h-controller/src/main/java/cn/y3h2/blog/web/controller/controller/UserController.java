@@ -1,11 +1,15 @@
 package cn.y3h2.blog.web.controller.controller;
 
 import cn.y3h2.blog.web.common.WebResponse;
-import cn.y3h2.blog.web.common.dto.common.req.LoginParam;
+import cn.y3h2.blog.web.common.dto.user.UserDTO;
+import cn.y3h2.blog.web.common.dto.user.req.LoginParam;
+import cn.y3h2.blog.web.common.dto.user.req.RegisterParam;
+import cn.y3h2.blog.web.common.dto.user.rsp.UserVO;
 import cn.y3h2.blog.web.controller.annotation.WebResponseHandler;
 import cn.y3h2.blog.web.controller.biz.UserBiz;
-import cn.y3h2.blog.web.controller.vo.UserVO;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.shiro.crypto.hash.SimpleHash;
+import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +22,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequestMapping("/api/y3h2/user")
-public class UserController {
+public class UserController extends BaseController {
 
     @Autowired
     private UserBiz userBiz;
@@ -34,15 +38,15 @@ public class UserController {
         return WebResponse.ok(userBiz.login(param));
     }
 
-
-    /**
-     * shiro测试
-     * @return
-     */
-    @GetMapping("/shiro/test")
+    @PostMapping("/register")
     @WebResponseHandler
-    public WebResponse<Boolean> test() {
-        return WebResponse.ok(true);
+    public WebResponse<Boolean> register(@RequestBody RegisterParam param) {
+        // 加密盐值
+        Object salt = ByteSource.Util.bytes(param.getUsername());
+        // 使用md5加密password一千次
+        String newPassword = new SimpleHash("MD5", param.getPassword(), salt, 1000).toHex();
+        param.setPassword(newPassword);
+        return WebResponse.ok(userBiz.register(param));
     }
 
 

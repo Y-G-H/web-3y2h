@@ -11,6 +11,6 @@
                            http://code.alibabatech.com/schema/dubbo
                            http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
-    <dubbo:reference id="userFacade" interface="cn.y3h2.blog.user.api.UserFacade" version="1.0.0" />
+    <dubbo:reference id="userFacade" interface="cn.y3h2.blog.user.api.UserFacade" version="1.0.0" check="false" />
 
 </beans>

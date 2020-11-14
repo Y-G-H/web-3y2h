@@ -1,10 +1,12 @@
 package cn.y3h2.blog.web.biz.user.impl;
 
+import cn.y3h2.blog.user.common.dto.UserInfoDTO;
 import cn.y3h2.blog.web.biz.helper.ConverterHelper;
 import cn.y3h2.blog.web.biz.user.UserService;
-import cn.y3h2.blog.web.common.dto.common.req.FindUserParam;
-import cn.y3h2.blog.web.common.dto.common.req.LoginParam;
+import cn.y3h2.blog.web.common.dto.user.req.FindUserParam;
+import cn.y3h2.blog.web.common.dto.user.req.LoginParam;
 import cn.y3h2.blog.web.common.dto.user.UserDTO;
+import cn.y3h2.blog.web.common.dto.user.req.RegisterParam;
 import cn.y3h2.blog.web.common.enums.MessageEnums;
 import cn.y3h2.blog.web.common.excaption.ExceptionFactory;
 import cn.y3h2.blog.web.intergration.user.UserRPC;
@@ -64,5 +66,19 @@ public class UserServiceImpl implements UserService {
             log.warn("UserServiceImpl#login no privilege, error is {}", e);
             throw ExceptionFactory.getBusinessException(MessageEnums.NO_PRIVILEGE, "没有权限");
         }
+    }
+
+    @Override
+    public Boolean register(RegisterParam param) {
+        if (StringUtils.isBlank(param.getUsername()))
+            throw ExceptionFactory.getBusinessException(MessageEnums.PARAM_ERROR, "注册用户名为空");
+        if (StringUtils.isBlank(param.getPassword()))
+            throw ExceptionFactory.getBusinessException(MessageEnums.PARAM_ERROR, "注册密码为空");
+
+        UserInfoDTO userInfoDTO = new UserInfoDTO();
+        userInfoDTO.setUsername(param.getUsername());
+        userInfoDTO.setPassword(param.getPassword());
+        userRPC.addUser(userInfoDTO);
+        return true;
     }
 }

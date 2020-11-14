@@ -1,4 +1,4 @@
-package cn.y3h2.blog.web.common.dto.common.req;
+package cn.y3h2.blog.web.common.dto.user.req;
 
 import lombok.Data;
 

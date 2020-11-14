@@ -1,17 +1,17 @@
-package cn.y3h2.blog.web.common.dto.user;
+package cn.y3h2.blog.web.common.dto.user.rsp;
 
 import lombok.Data;
 
 import java.util.Date;
 
 /**
-* @ClassName UserDTO
-* @Author kongming
-* @Date 2020/11/12 9:34 下午
-* @Description 用户dto
-*/
+ * @ClassName UserVO
+ * @Author kongming
+ * @Date 2020/11/14 7:15 下午
+ * @Description 用户信息VO
+ */
 @Data
-public class UserDTO {
+public class UserVO {
 
     /**
      * 用户id
@@ -27,11 +27,6 @@ public class UserDTO {
      * 真实姓名
      */
     private String realname;
-
-    /**
-     * 登录密码
-     */
-    private String password;
 
     /**
      * 手机号
@@ -62,10 +57,5 @@ public class UserDTO {
      * 角色编码
      */
     private String roleCode;
-
-    /**
-     * 用户角色
-     */
-    private RoleDTO role;
 
 }

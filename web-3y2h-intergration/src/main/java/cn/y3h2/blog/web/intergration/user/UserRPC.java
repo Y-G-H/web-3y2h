@@ -2,6 +2,7 @@ package cn.y3h2.blog.web.intergration.user;
 
 import cn.y3h2.blog.user.api.UserFacade;
 import cn.y3h2.blog.user.api.domain.req.FindUserCondition;
+import cn.y3h2.blog.user.api.domain.req.FindUserPart;
 import cn.y3h2.blog.user.common.dto.UserInfoDTO;
 import cn.y3h2.blog.user.common.model.Response;
 import cn.y3h2.blog.web.common.dto.user.UserDTO;
@@ -32,7 +33,10 @@ public class UserRPC {
         try {
             FindUserCondition findUserCondition = new FindUserCondition();
             findUserCondition.setUsername(username);
-            Response<List<UserInfoDTO>> response = userFacade.loadUser(findUserCondition);
+
+            FindUserPart findUserPart = new FindUserPart();
+            findUserPart.setNeedPermission(true);
+            Response<UserInfoDTO> response = userFacade.loadUserByUsername(findUserCondition, findUserPart);
 
             if (Objects.isNull(response)) {
                 log.warn("UserRPC#findUserByUsername rpc response is null, param is {}", username);
@@ -42,15 +46,33 @@ public class UserRPC {
                 log.warn("UserRPC#findUserByUsername rpc response is fail, param is {}", username);
                 throw ExceptionFactory.getBusinessException("", "查询用户信息失败");
             }
-            List<UserInfoDTO> users = response.getData();
-            if (CollectionUtils.isEmpty(users)) {
+            UserInfoDTO user = response.getData();
+            if (Objects.isNull(user)) {
                 log.warn("UserRPC#findUserByUsername find user empty, param is {}", username);
                 throw ExceptionFactory.getBusinessException(MessageEnums.NO_RESULT, "找不到该用户");
             }
-            return users.get(0);
+            return user;
         } catch (Exception e) {
             log.warn("UserRPC#findUserByUsername rpc error is {}, param is {}", e, username);
             throw ExceptionFactory.getRpcException(MessageEnums.RPC_ERROR, "查询用户信息异常");
+        }
+    }
+
+    public Boolean addUser(UserInfoDTO userInfoDTO) {
+        try {
+            Response<Boolean> response = userFacade.addUser(userInfoDTO);
+            if (Objects.isNull(response)) {
+                log.warn("UserRPC#findUserByUsername rpc response is null, param is {}", userInfoDTO);
+                throw ExceptionFactory.getBusinessException("", "添加用户信息response为空");
+            }
+            if (!response.isSuccess() || !response.getData()) {
+                log.warn("UserRPC#findUserByUsername rpc response is fail, param is {}", userInfoDTO);
+                throw ExceptionFactory.getBusinessException("", "添加用户信息失败");
+            }
+            return true;
+        } catch (Exception e) {
+            log.warn("UserRPC#findUserByUsername rpc error is {}, param is {}", e, userInfoDTO);
+            throw ExceptionFactory.getRpcException(MessageEnums.RPC_ERROR, "添加用户信息异常");
         }
     }
 

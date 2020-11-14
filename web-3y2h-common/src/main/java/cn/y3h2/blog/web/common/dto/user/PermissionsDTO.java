@@ -11,8 +11,14 @@ import lombok.Data;
 @Data
 public class PermissionsDTO {
 
+    /**
+     * 权限名称
+     */
     private String permissionName;
 
+    /**
+     * 权限编码
+     */
     private String permissionCode;
 
 }
