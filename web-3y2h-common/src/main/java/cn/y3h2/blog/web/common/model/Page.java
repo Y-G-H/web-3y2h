@@ -31,7 +31,7 @@ public class Page<T> implements Serializable {
   /**
    * 页码
    */
-  private Integer pageNum;
+  private Integer pageNo;
 
   public Page(List<T> data, Long total) {
     this.data = data;
@@ -39,8 +39,8 @@ public class Page<T> implements Serializable {
   }
 
   public void init(){
-    if(pageNum == null){
-      this.pageNum = 1;
+    if(pageNo == null){
+      this.pageNo = 1;
     }
     if(pageSize == null){
       this.setPageSize(10);
@@ -64,7 +64,7 @@ public class Page<T> implements Serializable {
   public static <T> Page emptyPage(Integer pageSize,Integer pageNum){
     Page<T> emptyPage= emptyPage();
     emptyPage.setPageSize(pageSize);
-    emptyPage.setPageNum(pageNum);
+    emptyPage.setPageNo(pageNum);
     return emptyPage;
   }
 }

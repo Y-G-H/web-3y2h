@@ -11,7 +11,13 @@ import lombok.Data;
 */
 public class PageLimitParam {
 
-    private Integer limit;
+    /**
+     * 页码
+     */
+    private Integer pageNo;
 
-    private Integer offset;
+    /**
+     * 页长
+     */
+    private Integer pageSize;
 }
