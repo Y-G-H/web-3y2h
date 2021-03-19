@@ -48,6 +48,7 @@ public class UserServiceImpl implements UserService {
         if (StringUtils.isEmpty(param.getPassword()))
             throw ExceptionFactory.getBusinessException(MessageEnums.PARAM_ERROR, "登录密码为空");
         //用户认证信息
+        log.info("UserServiceImpl#login user Is the login, user is [{}]", param);
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken usernamePasswordToken =
                 new UsernamePasswordToken(param.getUsername(), param.getPassword());
@@ -58,13 +59,13 @@ public class UserServiceImpl implements UserService {
             return ConverterHelper.toUserDTO(userRPC.findUserByUsername(param.getUsername()));
         } catch (UnknownAccountException e) {
             log.warn("UserServiceImpl#login username is not exist, error is {}", e);
-            throw ExceptionFactory.getBusinessException(MessageEnums.LOGIN_ERROR, "用户名不存在");
+            throw ExceptionFactory.getBusinessException(MessageEnums.NOT_FIND_USER);
         } catch (AuthenticationException e) {
-            log.warn("UserServiceImpl#login username or password wrong, error is {}", e);
-            throw ExceptionFactory.getBusinessException(MessageEnums.LOGIN_ERROR, "账号或密码错误");
+            log.warn("UserServiceImpl#login password wrong, error is {}", e);
+            throw ExceptionFactory.getBusinessException(MessageEnums.PASSWORD_MISTAKE);
         } catch (AuthorizationException e) {
             log.warn("UserServiceImpl#login no privilege, error is {}", e);
-            throw ExceptionFactory.getBusinessException(MessageEnums.NO_PRIVILEGE, "没有权限");
+            throw ExceptionFactory.getBusinessException(MessageEnums.NO_PRIVILEGE);
         }
     }
 

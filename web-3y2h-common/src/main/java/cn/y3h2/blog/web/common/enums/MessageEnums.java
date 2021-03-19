@@ -22,6 +22,8 @@ public enum MessageEnums {
   LOGIN_ERROR("100", "用户登录异常！"),
   NO_PRIVILEGE("101","无权限"),
   UN_LOGGED("102", "用户未登录！"),
+  NOT_FIND_USER("103", "找不到用户！"),
+  PASSWORD_MISTAKE("104", "密码错误！"),
   EXCEL_READ_ERROR("9994", "excel数据校验异常"),
   CONFLICT("10100","操作冲突,请重试！"),
   VALIDATE_FAIL("10200","操作校验失败 ");

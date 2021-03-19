@@ -7,6 +7,7 @@ import cn.y3h2.blog.user.common.dto.UserInfoDTO;
 import cn.y3h2.blog.user.common.model.Response;
 import cn.y3h2.blog.web.common.dto.user.UserDTO;
 import cn.y3h2.blog.web.common.enums.MessageEnums;
+import cn.y3h2.blog.web.common.excaption.BusinessException;
 import cn.y3h2.blog.web.common.excaption.ExceptionFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
@@ -44,14 +45,11 @@ public class UserRPC {
             }
             if (!response.isSuccess()) {
                 log.warn("UserRPC#findUserByUsername rpc response is fail, param is {}", username);
-                throw ExceptionFactory.getBusinessException("", "查询用户信息失败");
+                throw ExceptionFactory.getBusinessException(response.getCode(), response.getMessage());
             }
-            UserInfoDTO user = response.getData();
-            if (Objects.isNull(user)) {
-                log.warn("UserRPC#findUserByUsername find user empty, param is {}", username);
-                throw ExceptionFactory.getBusinessException(MessageEnums.NO_RESULT, "找不到该用户");
-            }
-            return user;
+            return response.getData();
+        } catch (BusinessException e) {
+            throw e;
         } catch (Exception e) {
             log.warn("UserRPC#findUserByUsername rpc error is {}, param is {}", e, username);
             throw ExceptionFactory.getRpcException(MessageEnums.RPC_ERROR, "查询用户信息异常");
