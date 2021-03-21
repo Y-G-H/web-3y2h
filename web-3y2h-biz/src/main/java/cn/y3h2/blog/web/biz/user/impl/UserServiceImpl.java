@@ -21,6 +21,8 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Base64;
+
 /**
 * @ClassName UserServiceImpl
 * @Author kongming
@@ -47,6 +49,10 @@ public class UserServiceImpl implements UserService {
             throw ExceptionFactory.getBusinessException(MessageEnums.PARAM_ERROR, "登录用户名为空");
         if (StringUtils.isEmpty(param.getPassword()))
             throw ExceptionFactory.getBusinessException(MessageEnums.PARAM_ERROR, "登录密码为空");
+
+        byte[] decodedBytes = Base64.getDecoder().decode(param.getPassword());
+        param.setPassword(new String(decodedBytes));
+
         //用户认证信息
         log.info("UserServiceImpl#login user Is the login, user is [{}]", param);
         Subject subject = SecurityUtils.getSubject();
